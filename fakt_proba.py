@@ -2,8 +2,13 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 import numpy as np
 
+def faktorial(n):
+   if n == 1:
+       return n
+   else:
+       return n*faktorial(n-1)
 
-factor = 3
+factor = 2
 szint = 2
 beallitas = szint**factor
 ismetles = 2
@@ -15,10 +20,10 @@ meres = 2
 x_also_hullam = []
 x_felso_hullam = []
 for i in range(1,factor+1):
-    print("x",i,"a: ")
+    print("x",i,"a: ",end='',sep="")
     also_hullam = int(input())
     x_also_hullam.append(also_hullam)
-    print("x",i,"f: ")
+    print("x",i,"f: ",end='',sep="")
     felso_hullam = int(input())
     x_felso_hullam.append(felso_hullam)
 
@@ -42,7 +47,7 @@ for i in range(factor):
 for i in range(len(x_also_hullam)):
     x_intervallum = (np.subtract(x_felso_hullam,x_also_hullam))/2
     
-#print("intervall:",len(x_intervallum))
+# print("intervall:",len(x_intervallum))
 
 
 
@@ -55,7 +60,34 @@ for i in range(factor):
     x_transzformalt.append(x_also_transzformalt)
     x_transzformalt.append(x_felso_transzformalt)
 
-#print(x_transzformalt)
+# print(x_transzformalt)
+
+
+
+# Az első sorozat mért eredményei
+
+y_k = []
+for i in range(factor):
+    for j in range(2**factor):
+        print("y_k",i+1,"(x",j+1,"): ",end='',sep="")
+        y_k.append(float(input()))
+
+y_k_sum = []
+for i in range(2**factor):
+    y_k_sum.append((y_k[i]+y_k[i+2**factor])/2)
+
+# print(y_k_sum)
+
+
+
+# b értékek számítása
+
+
+
+
+
+
+# Transzformált koordináta rendszerben a keresett polinom
 
 if (factor == 4):
     print()
