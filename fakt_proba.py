@@ -11,7 +11,7 @@ def faktorial(n):
 factor = 2
 szint = 2
 beallitas = szint**factor
-ismetles = 2
+ismetles = 1
 meres = 2
 
 
@@ -67,7 +67,7 @@ for i in range(factor):
 # Az első sorozat mért eredményei
 
 y_k = []
-for i in range(factor):
+for i in range(factor): # ismetles
     for j in range(2**factor):
         print("y_k",i+1,"(x",j+1,"): ",end='',sep="")
         y_k.append(float(input()))
