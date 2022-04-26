@@ -8,7 +8,7 @@ from sympy import *
 factor = 2
 szint = 2
 beallitas = szint**factor
-ismetles = 2
+ismetles = 1
 meres = 2
 
 
@@ -35,7 +35,7 @@ for i in range(factor):
     x_also_elem = (x_also_hullam[i]+x_felso_hullam[i])/2
     x_also.append(x_also_elem)
 
-print("x_also:", x_also)
+# print("x_also:", x_also)
 
 
 
@@ -44,7 +44,7 @@ print("x_also:", x_also)
 for i in range(len(x_also_hullam)):
     x_intervallum = (np.subtract(x_felso_hullam,x_also_hullam))/2
     
-print("intervall:",x_intervallum)
+# print("intervall:",x_intervallum)
 
 
 
@@ -57,7 +57,7 @@ for i in range(factor):
     x_transzformalt.append(x_also_transzformalt)
     x_transzformalt.append(x_felso_transzformalt)
 
-print(x_transzformalt)
+# print(x_transzformalt)
 
 
 # X értékek táblázat [-1, 1]
@@ -109,9 +109,12 @@ for i in range(ismetles): # factor
 
 y_k_sum = []
 for i in range(2**factor):
-    y_k_sum.append((y_k[i]+y_k[i+(ismetles*factor)])/2)
+    if (ismetles == 1):
+        y_k_sum.append((y_k[i]+y_k[ismetles*factor])/2)
+    else:
+        y_k_sum.append((y_k[i]+y_k[i+(ismetles*factor)])/2)
 
-print(y_k_sum)
+# print(y_k_sum)
 
 
 
@@ -123,31 +126,38 @@ for i in range(len(y_k_sum)):
     j = np.round(sum(np.multiply(x_elojeles[i],y_k_sum)/beallitas),3)
     b.append(j)
 
-print(b)
+# print(b)
 
 
 
 # Transzformált koordináta rendszerben a keresett polinom
 
 if (factor == 4):
+    print("Transzformált koordináta rendszerben a keresett polinom")
     print("y = ",b[0] ,"+", b[1],"*x1 +", b[2],"*x2 +", b[3],"*x3 +", b[4],"*x4 +", b[5],"*x1*x2 +", b[6],"*x1*x3 +", b[7],"*x1*x4 +", \
             b[8],"*x2*x3 +", b[9],"*x2*x4 +", b[10],"*x3*x4 +", b[11],"*x1*x2*x3 +", b[12],"*x1*x2*x4 +", \
             b[13],"*x1*x3*x4 +", b[14],"*x2*x3*x4 +", b[15],"*x1*x2*x3*x4")
 elif (factor == 3):
+    print("Transzformált koordináta rendszerben a keresett polinom")
     print("y = ", b[0] ,"+", b[1],"*x1 +", b[2],"*x2 +", b[3],"*x3 +", b[4],"*x1*x2 +", b[5],"*x1*x3 +", b[6],"*x2*x3 +", b[7],"*x1*x2*x3")
 elif (factor == 2):
+    print("Transzformált koordináta rendszerben a keresett polinom")
     print("y = ", b[0] ,"+", b[1],"*x1 +", b[2],"*x2 +", b[3],"*x1*x2")
 elif (factor == 1):
+    print("Transzformált koordináta rendszerben a keresett polinom")
     print("y = ",b[0] ,"+", b[1],"*x1")
 
 
 # Polinom visszatranszformálása a faktorok természetes mértékére
 
 if (factor == 2):
+    print("Polinom visszatranszformálása a faktorok természetes mértékére")
     print("y =",b[0],b[1]/x_intervallum[0],"*x1","+",(b[1]*(0-x_also[0]))/x_intervallum[0],b[2]/x_intervallum[1],"*x2","+",(b[2]*(0-x_also[1]))/x_intervallum[1])
 elif (factor == 3):
+    print("Polinom visszatranszformálása a faktorok természetes mértékére")
     print("y =",b[0],b[1]/x_intervallum[0],"*x1","+",(b[1]*(0-x_also[0]))/x_intervallum[0],b[2]/x_intervallum[1],"*x2","+",(b[2]*(0-x_also[1]))/x_intervallum[1],b[3]/x_intervallum[2],"*x3","+",(b[3]*(0-x_also[2]))/x_intervallum[2])
 elif (factor == 4):
+    print("Polinom visszatranszformálása a faktorok természetes mértékére")
     print("y =",b[0],b[1]/x_intervallum[0],"*x1","+",(b[1]*(0-x_also[0]))/x_intervallum[0],b[2]/x_intervallum[1],"*x2","+",(b[2]*(0-x_also[1]))/x_intervallum[1],b[3]/x_intervallum[2],"*x3","+",(b[3]*(0-x_also[2]))/x_intervallum[2],b[4]/x_intervallum[3],"*x4","+",(b[4]*(0-x_also[3]))/x_intervallum[3])
 
 
@@ -201,13 +211,13 @@ X1,X2 = np.meshgrid(x1_data,x2_data)
 Y = function_y(X1,X2)
 
  
-ax.plot_wireframe(X1,X2,Y,cmap="binary")
+ax.plot_wireframe(X1,X2,Y,cmap='binary')
 ## fig = plt.figure()
 ## ax = fig.add_subplot(projection="3d")
 ## ax.plot_wireframe(X,Z,B,color='black')
 # for a,v in enumerate(z):
 #     ax.text(a, v+25, "%d" %v, ha="center")
-ax.set_xlabel("x1(vc)",fontsize = 22)
-ax.set_ylabel("x2(Lf)",fontsize = 22)
+ax.set_xlabel("vc",fontsize = 22)
+ax.set_ylabel("Lf",fontsize = 22)
 ax.set_zlabel("y",fontsize = 22)
 plt.show() 
